@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables</title>
+</head>
+
+<body>
+    <h1>JavaScript Variables</h1>
+</body>
+
+<script>
+    let a = parseInt(prompt("enter value of a"));
+    let b = parseInt(prompt("enter value of b"));
+    let c;
+
+    document.write(a);
+    document.write(b);
+    document.write(`a=${a + b}`);
+    
+    if (a>b) {
+        document.write("<BR><HR>a is max");
+    }
+    else {
+        document.write("B is max");
+    }
+
+    document.write(`before swapping =${a} ${b}`);
+
+    c=a;
+	a=b;
+	b=c;
+    
+    document.write(`after swapping =${a} ${b}`);
+</script>
+
+</html>
