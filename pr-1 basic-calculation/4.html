@@ -1,0 +1,19 @@
+<!-- 4. Write a javascript Program to find gross salary. -->
+
+<script type="text/javascript">
+
+    var bs = parseInt(prompt("Enter the base salary"));
+    var hraPercentage = parseInt(prompt("Enter HRA percentage"));
+    var daPercentage = parseInt(prompt("Enter DA percentage"));
+    var taPercentage = parseInt(prompt("Enter TA percentage"));
+
+ 
+    var hra = (bs * hraPercentage) / 100;
+    var da = (bs * daPercentage) / 100;
+    var ta = (bs * taPercentage) / 100;
+
+    var grossSalary = bs + hra + da + ta;
+
+   
+    document.write(`<h1>Gross Salary is: ${grossSalary}</h1>`);
+</script>
