@@ -1,0 +1,39 @@
+<!-- 5.Write Write a JavaScript program to add two number of addition, subtraction, multiplication, division (using simple function) -->
+
+<script type="text/Javascript">
+
+
+const sum=()=>{
+           let a =parseInt(prompt("enter a number"))
+           let b =parseInt(prompt("enter a number"))
+           return `sum is ${a} + ${b} = ${a+b}`
+           }
+           const sub=()=>{
+            let a =parseInt(prompt("enter a number"))
+            let b =parseInt(prompt("enter a number"))
+            return `sub is ${a} - ${b} = ${a-b}`
+           
+            }
+            const mul=()=>{
+                let a =parseInt(prompt("enter a number"))
+                let b =parseInt(prompt("enter a number"))
+            return `mul is ${a} * ${b} = ${a*b}`
+            
+                }
+                const div=()=>{
+                    let a =parseInt(prompt("enter a number"))
+                    let b =parseInt(prompt("enter a number"))
+                    if(b==0)
+                    {
+                        return "error: division by zero is not allowed"
+
+                    }
+            return `div is ${a} / ${b} = ${a/b}`
+                    
+                    }
+                    document.write(`<h1>${sum()}</h1>`)
+                    document.write(`<h1>${sub()}</h1>`)
+                    document.write(`<h1>${mul()}</h1>`)
+                    document.write(`<h1>${div()}</h1>`)
+
+</script>

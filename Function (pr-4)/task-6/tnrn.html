@@ -1,0 +1,23 @@
+<!-- Write a javascript Program to perform a swapping of two variables.(all function use) -->
+
+<script type="text/javascript">
+
+    var num1 = parseInt(prompt(`enter any number:-`))
+    var num2 = parseInt(prompt(`enter any number:-`))
+
+    document.write(`<h2> before Swapping:- ${num1}<br></h2`)
+    document.write(`<h2> before Swapping :- ${num2}<br><br><br></h2`)
+
+    const swap = () => {
+        num1 = num1 + num2;
+        num2 = num1 - num2;
+        num1 = num1 - num2;
+
+        document.write(`<h2> after Swapping :- ${num1} <br></h2`);
+        document.write(`<h2>  after Swapping :- ${num2}</h2`);
+    }
+
+
+    swap();
+
+</script>

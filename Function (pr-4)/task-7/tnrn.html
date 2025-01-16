@@ -1,0 +1,30 @@
+<!-- Write a JavaScript program to find which number is greter in 3 numbers using nested if else.(using all function) -->
+<script type="text/javascript">
+
+    var a = parseInt(prompt(`Enter any number:-`))
+    var b = parseInt(prompt(`Enter any number:-`))
+    var c = parseInt(prompt(`Enter any number:-`))
+
+    const max = () => {
+
+        if (a > b) {
+            if (a > c) {
+                document.write(`<h1>A is max..</h1>`)
+
+            } else {
+                document.write(`<h1>C is max..</h1>`)
+            }
+        } else {
+            if (b > c) {
+                document.write(`<h1>B is max..</h1>`)
+            }
+            else{
+                document.write(`<h1>C is max..</h1>`)
+            }
+        }
+
+    }
+    max();
+
+
+</script>

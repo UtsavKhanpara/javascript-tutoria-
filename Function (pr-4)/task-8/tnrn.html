@@ -1,0 +1,48 @@
+<!-- Write a JavaScript program to create basic calculator using switch case. (simple function use)Ex. User input a,b and select choice + , - , * , / 
+a=10
+b=5
+select choice + , - , * , /
++
+Ans = 15
+-
+Ans = 5;
+*
+Ans = 50
+/
+Ans = 2 -->
+
+<script type="text/javascript">
+
+    var a = parseInt(prompt(`enter any number:-`))
+    var b = parseInt(prompt(`enter any number:-`))
+    var c = prompt(`Select choice + , - , * , / :-`);
+
+    const ans = () => {
+
+        switch (c) {
+            case "+":
+                document.write(`<h2> Sum is :- ${a + b}</h2>`);
+                break;
+            case "-":
+                document.write(`<h2> Subtraction is :- ${a - b}</h2>`);
+                break;
+            case "*":
+                document.write(`<h2> Multiplication is :- ${a * b}</h2>`);
+                break;
+            case "/":
+                if (b == 0) {
+                    document.write(`<h2>Error ! Divison is not allowed..</h2>`);
+                    break;
+                }
+                document.write(`<h2> Division is :- ${a / b}</h2>`);
+                break;
+            default:
+                document.write(`<h2>Invalid choice</h2>`);
+                break;
+
+        }
+    }
+    ans();
+
+
+</script>

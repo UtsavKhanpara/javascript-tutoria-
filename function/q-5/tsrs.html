@@ -1,0 +1,27 @@
+<!-- 5.Write Write a JavaScript program to add two number of addition, subtraction, multiplication, division (using simple function) -->
+
+<script type="text/Javascript">
+
+    const sum=(a,b)=>{
+        return `sum is ${a} + ${b} = ${a+b}`
+        }
+        const sub=(a,b)=>{
+            return `sub is ${a} - ${b} = ${a-b}`
+        }
+        const mul=(a,b)=>{
+            return `mul is ${a} * ${b} = ${a*b}`
+        }
+        const div=(a,b)=>{
+            if(b==0)
+            return "Error: Division by zero is not allowed"
+            return `div is ${a} / ${b} = ${a/b}`
+        }
+        document.write(sum(10,20))
+        document.write("<br>")
+        document.write(sub(10,20))
+        document.write("<br>")
+        document.write(mul(10,20))
+        document.write("<br>")
+        document.write(div(10,20))
+
+</script>
