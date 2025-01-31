@@ -1,0 +1,43 @@
+<!-- //onclick event -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center">
+        <table border="1">
+            <tr>
+                <td>No 1:-</td>
+                <td><input type="number" id="no1"></td>
+            </tr>
+            <tr>
+                <td>No 2:-</td>
+                <td><input type="number" id="no2"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" value="sum" onclick="add()"></td>
+            </tr>
+        </table>
+        <h1 id="ans"></h1>
+    </div>
+    <script type="text/javascript">
+
+        const add=()=>{
+           let no1=document.getElementById(`no1`).value;
+           let no2=document.getElementById(`no2`).value;
+           let ans = parseInt(no1) + parseInt(no2);
+
+            document.getElementById(`ans`).innerHTML=`ans :- ${ans}`
+
+            document.getElementById(`no1`).value="";
+            document.getElementById(`no2`).value="";
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Records</title>
+</head>
+
+<body style="background-image:url(https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00MjgtMDAzMC1rczA0dXNjcy5qcGc.jpg); background-repeat: no-repeat; background-size: cover;">
+
+
+    <div align="center">
+        <h1>Filter Records</h1>
+
+        <input type="text" id="city">
+        <input type="button" value="city" onclick="cityFun()">
+        <input type="button" value="reset" onclick="reset()">
+
+        <br><br>
+
+        <table border="1" cellpadding="2">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Gender</td>
+                <td>Hobby</td>
+                <td>City</td>
+                <td>Salary</td>
+                <td>Designation</td>
+            </tr>
+            <tbody id="record"></tbody>
+        </table>
+        <h1 id="error"></h1>
+
+    </div>
+</body>
+
+
+<script type="text/javascript">
+
+    const records = [
+        { id: 1, name: "John", email: "john@gmail.com", gender: "Male", hobby: "Cricket", city: "Delhi", salary: 50000, designation: "Manager" },
+
+        { id: 2, name: "Rahul", email: "rahul@gmail.com", gender: "Male", hobby: "Football", city: "Mumbai", salary: 60000, designation: "Developer" },
+
+        { id: 3, name: "Rohan", email: "rohan@gmail.com", gender: "Male", hobby: "Cricket", city: "Delhi", salary: 70000, designation: "Developer" },
+
+        { id: 4, name: "Aditi", email: "aditi@gmail.com", gender: "Female", hobby: "Reading", city: "Bangalore", salary: 55000, designation: "HR" },
+
+        { id: 5, name: "Sita", email: "sita@gmail.com", gender: "Female", hobby: "Painting", city: "Chennai", salary: 48000, designation: "Designer" },
+
+        { id: 6, name: "Amit", email: "amit@gmail.com", gender: "Male", hobby: "Badminton", city: "Hyderabad", salary: 75000, designation: "Manager" },
+
+        { id: 7, name: "Priya", email: "priya@gmail.com", gender: "Female", hobby: "Traveling", city: "Kolkata", salary: 40000, designation: "Assistant" },
+
+        { id: 8, name: "Vikram", email: "vikram@gmail.com", gender: "Male", hobby: "Cycling", city: "Delhi", salary: 50000, designation: "Developer" },
+
+        { id: 9, name: "Neha", email: "neha@gmail.com", gender: "Female", hobby: "Yoga", city: "Mumbai", salary: 65000, designation: "Developer" },
+
+        { id: 10, name: "Ravi", email: "ravi@gmail.com", gender: "Male", hobby: "Football", city: "Pune", salary: 55000, designation: "Tester" },
+
+        { id: 11, name: "Sam", email: "sam@gmail.com", gender: "Male", hobby: "Basketball", city: "Bangalore", salary: 58000, designation: "Manager" },
+
+        { id: 12, name: "Tanya", email: "tanya@gmail.com", gender: "Female", hobby: "Writing", city: "Chennai", salary: 47000, designation: "Content Writer" },
+
+        { id: 13, name: "Vishal", email: "vishal@gmail.com", gender: "Male", hobby: "Cricket", city: "Delhi", salary: 70000, designation: "Developer" },
+
+        { id: 14, name: "Maya", email: "maya@gmail.com", gender: "Female", hobby: "Photography", city: "Hyderabad", salary: 54000, designation: "Designer" },
+
+        { id: 15, name: "Karan", email: "karan@gmail.com", gender: "Male", hobby: "Running", city: "Mumbai", salary: 60000, designation: "Developer" },
+
+        { id: 16, name: "Rajesh", email: "rajesh@gmail.com", gender: "Male", hobby: "Music", city: "Kolkata", salary: 72000, designation: "Manager" },
+        
+        { id: 17, name: "Simran", email: "simran@gmail.com", gender: "Female", hobby: "Dancing", city: "Jaipur", salary: 53000, designation: "HR" },
+
+        { id: 18, name: "Manoj", email: "manoj@gmail.com", gender: "Male", hobby: "Photography", city: "Chennai", salary: 67000, designation: "Developer" },
+
+        { id: 19, name: "Seema", email: "seema@gmail.com", gender: "Female", hobby: "Hiking", city: "Bangalore", salary: 46000, designation: "Assistant" },
+
+        { id: 20, name: "Ramesh", email: "ramesh@gmail.com", gender: "Male", hobby: "Chess", city: "Surat", salary: 54000, designation: "Tester" },
+
+     
+    ];
+    
+    const viewRecord=()=>{
+        let tbl=""
+        records.map((val)=>{
+            tbl+=`
+                    <tr>
+                        <td>${val?.id}</td>
+                        <td>${val?.name}</td>
+                        <td>${val?.email}</td>
+                        <td>${val?.gender}</td>
+                        <td>${val?.hobby}</td>
+                        <td>${val?.city}</td>
+                        <td>${val?.salary}</td>
+                        <td>${val?.designation}</td>
+                    </tr>
+                `
+        })
+        document.getElementById("record").innerHTML=tbl;
+    }
+    viewRecord();
+
+    const cityFun=()=>{
+        let city=document.querySelector(`#city`).value;
+        let cityRecords=records.filter((val)=>val.city===city);
+        let err="";
+        if(cityRecords.length===0){
+             err+=`<h1>Record Not Found </h1>`
+             document.getElementById(`error`).innerHTML=err;
+        }
+        document.getElementById(`city`).value="";
+     
+       
+
+        let tbl="";
+        cityRecords.map((val)=>{
+            tbl+=`
+
+                <tr>
+                    <td>${val?.id}</td>
+                    <td>${val?.name}</td>
+                    <td>${val?.email}</td>
+                    <td>${val?.gender}</td>
+                    <td>${val?.hobby}</td>
+                    <td>${val?.city}</td>
+                    <td>${val?.salary}</td>
+                    <td>${val?.designation}</td>
+                </tr>
+            `
+        })
+        document.getElementById(`record`).innerHTML=tbl;
+    }
+
+    const reset=()=>{
+        viewRecord();
+        document.getElementById(`error`).innerHTML="";
+    }
+    
+
+</script>
+
+</html>
