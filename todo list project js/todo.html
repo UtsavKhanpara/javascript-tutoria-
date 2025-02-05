@@ -7,14 +7,13 @@
     <title>Todo List</title>
 
     <style>
-        /* Resetting some default browser styling */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Background and basic layout */
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(to right, #d09e9e, #af4c4c);
@@ -26,7 +25,7 @@
             margin: 0;
         }
 
-        /* Container holding the content */
+
         .container {
             background-color: #fff;
             padding: 30px;
@@ -44,7 +43,7 @@
             color: #34495e;
         }
 
-        /* Styling the table */
+       
         table {
             width: 100%;
             margin-top: 20px;
@@ -72,7 +71,7 @@
             transition: background-color 0.3s ease;
         }
 
-        /* Styling for the input field and button */
+        
         input[type="text"] {
             width: 100%;
             padding: 15px;
@@ -104,7 +103,7 @@
             background-color: #1abc9c;
         }
 
-        /* Styling the task delete button */
+     
         #todolist td button {
             background-color: #e74c3c;
             color: white;
@@ -120,7 +119,6 @@
             background-color: #c0392b;
         }
 
-        /* Smooth fade-in transition */
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
@@ -141,7 +139,7 @@
     <div class="container">
         <h1>Todo List</h1>
 
-        <!-- Task Input Form -->
+      
         <table>
             <tr>
                 <td>Add Task</td>
@@ -155,7 +153,7 @@
 
         <h2>Task List</h2>
 
-        <!-- Task List Table -->
+      
         <table>
             <thead>
                 <tr>
@@ -171,7 +169,7 @@
     <script type="text/javascript">
         let record = [];
 
-        // Function to update the task list view
+      
         const viewTask = () => {
             let tbl = "";
             record.forEach((val, index) => {
@@ -186,7 +184,7 @@
             document.getElementById("todolist").innerHTML = tbl;
         };
 
-        // Function to add a new task
+     
         const addTask = () => {
             let task = document.getElementById("task").value;
             let duplicate = record.filter((val) => val.taskname === task);
@@ -208,14 +206,13 @@
             viewTask();
         };
 
-        // Function to delete a task
         const deleteTask = (taskId) => {
             record = record.filter((task) => task.taskid !== taskId);
             alert("Task Deleted Successfully!");
             viewTask();
         };
 
-        // Initial call to render tasks on page load
+     
         viewTask();
     </script>
 
