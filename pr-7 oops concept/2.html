@@ -1,0 +1,61 @@
+<!-- 2. Write a JavaScript program that creates a class called "BankAccount" with properties for account number and balance. Include methods to deposit and withdraw money from the account. Create some instances of the "BankAccount" class, deposit some money, and withdraw a portion of it. -->
+
+<script type="text/JavaScript">
+    // create the BankAccount class
+class BankAccount {
+  // Constructor to declare the account number and balance
+  constructor(accountNumber, initialBalance = 0) {
+    this.accountNumber = accountNumber;
+    this.balance = initialBalance;
+  }
+
+  // Method to deposit money the account
+  deposit(amount) {
+    if (amount > 0) {
+      this.balance += amount;
+      alert(`Deposited: $${amount}`);
+    } else {
+      alert("Deposit amount must be greater than zero.");
+    }
+  }
+
+  // Method to withdraw money from the account
+  withdraw(amount) {
+    if (amount > 0 && amount <= this.balance) {
+      this.balance -= amount;
+      alert(`Withdraw: $${amount}`);
+    } else {
+      alert("Insufficient balance.");
+    }
+  }
+
+  // Method to check the account balance
+  checkBalance() {
+    alert(`Account Balance: ${this.balance}`);
+  }
+}
+
+// Create an instance of the BankAccount class with an initial balance of 1500
+const account = new BankAccount('921010001931548', 150000);
+
+// Display the opening balance using alert
+alert(`A/c No.: ${account.accountNumber}`);
+alert(`Opening Balance: ${account.balance}`);
+
+// Deposit money into the account
+account.deposit(5000);
+
+// Withdraw money from the account
+account.withdraw(4000);
+
+// Display the balance after withdrawal
+account.checkBalance();
+
+// Attempt to withdraw an amount larger than the balance
+alert("Want to withdraw: $1800");
+account.withdraw(18000);
+
+// Display the final balance
+account.checkBalance();
+
+</script>
