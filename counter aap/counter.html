@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+     
+        body {
+            background: linear-gradient(45deg, #f3f4f7, #b8c6db);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+    
+        .main {
+            background-color: #ffffff;
+            width: 300px;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .main:hover {
+            transform: scale(1.05);
+        }
+
+    
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #cnt {
+            font-size: 50px;
+            color: #333;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+    
+        .btn1,
+        .btn2 {
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 80px;
+        }
+
+        .btn1:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+
+        .btn2:hover {
+            background-color: #f44336;
+            transform: translateY(-3px);
+        }
+
+        .btn1:disabled,
+        .btn2:disabled {
+            background-color: blue;
+            cursor: not-allowed;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .main {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            #cnt {
+                font-size: 40px;
+            }
+
+            .btn1,
+            .btn2 {
+                font-size: 18px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <h1>Counter App</h1>
+        <h1 id="cnt">0</h1>
+        <div>
+            <button class="btn1" onclick="Increment()">+</button>
+            <button class="btn2" id="decrement" onclick="Decrement()" disabled>-</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        let cnt = 0;
+
+        let btn = document.getElementById('decrement');
+        btn.disabled = true;
+
+        document.getElementById('cnt').innerHTML = cnt;
+
+        const Increment = () => {
+            cnt++;
+            document.getElementById('cnt').innerHTML = cnt;
+
+            // Enable the decrement button when counter is positive
+            if (cnt > 0) {
+                btn.disabled = false;
+            }
+
+            // Change counter color when it's positive
+            document.getElementById('cnt').style.color = '#4CAF50';
+        }
+
+        const Decrement = () => {
+            cnt--;
+            document.getElementById('cnt').innerHTML = cnt;
+
+            // Disable the decrement button when counter is zero
+            if (cnt === 0) {
+                btn.disabled = true;
+                document.getElementById('cnt').style.color = '#333';  // Reset color to default when it's zero
+            }
+        }
+    </script>
+
+</body>
+
+</html>
