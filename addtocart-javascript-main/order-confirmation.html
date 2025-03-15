@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #28a745;
+            font-size: 26px;
+        }
+        .order-summary {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .order-item img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid #ddd;
+            margin-right: 15px;
+        }
+        .order-details {
+            flex: 1;
+        }
+        .order-details p {
+            margin: 4px 0;
+            color: #333;
+            font-size: 14px;
+        }
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #222;
+            margin-top: 15px;
+            text-align: right;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .thank-you-message {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fdf8e8;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #555;
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            margin-top: 15px;
+            text-align: center;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .home {
+            background: #007bff;
+        }
+        .home:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🎉 Order Placed Successfully! 🎉</h2>
+        <p>Thank you for your purchase. Here are your order details:</p>
+
+        <!-- Order Details -->
+        <div class="order-summary" id="order-summary"></div>
+
+        <!-- Total Amount -->
+        <div class="total" id="total-amount">Total: $0</div>
+
+        <!-- Thank You Message & Shopping Quote -->
+        <div class="thank-you-message">
+            <p>✨ Thank you for shopping with us! ✨</p>
+            <p><strong>"Life is short. Buy the shoes!" 👠🛍️</strong></p>
+            <p>We hope to see you again soon! Have a fantastic day! 🎉</p>
+        </div>
+
+        <!-- Back to Home Button -->
+        <button class="button home" id="go-home">Back to Home</button>
+    </div>
+
+    <script>
+        function loadOrderDetails() {
+            let order = JSON.parse(localStorage.getItem("order")) || [];
+            let totalAmount = 0;
+            let orderSummaryDiv = document.getElementById("order-summary");
+
+            orderSummaryDiv.innerHTML = ""; // Clear previous content
+
+            if (order.length === 0) {
+                orderSummaryDiv.innerHTML = "<p style='text-align:center; color:red;'>No order details found.</p>";
+            } else {
+                order.forEach(item => {
+                    totalAmount += item.price * item.count;
+
+                    // Debugging: Check image URL in console
+                    console.log("Image URL:", item.img);
+
+                    orderSummaryDiv.innerHTML += `
+                        <div class="order-item">
+                            <img src="${item.img}" onerror="this.onerror=null; this.src='placeholder.jpg';" alt="${item.name}">
+                            <div class="order-details">
+                                <p><strong>${item.name}</strong></p>
+                                <p>Price: $${item.price}</p>
+                                <p>Quantity: ${item.count}</p>
+                                <p><strong>Total: $${item.price * item.count}</strong></p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            // Display total amount
+            document.getElementById("total-amount").innerText = `Total: $${totalAmount}`;
+        }
+
+        // Load order data on page load
+        loadOrderDetails();
+
+        // Back to Home Button Click Event
+        document.getElementById("go-home").addEventListener("click", function () {
+            window.location.href = "index.html"; // Redirect to Home Page
+        });
+    </script>
+
+</body>
+</html>

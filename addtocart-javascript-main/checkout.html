@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .cart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid #ddd;
+        }
+        .cart-item-details {
+            flex: 1;
+            padding-left: 10px;
+        }
+        .cart-item p {
+            margin: 5px 0;
+            color: #444;
+        }
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .quantity-buttons button {
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: 0.2s;
+            margin: 0 5px;
+        }
+        .quantity-buttons button:hover {
+            background: #0056b3;
+        }
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: right;
+            color: #333;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .place-order {
+            background: green;
+        }
+        .place-order:hover {
+            background: darkgreen;
+        }
+        .back-to-cart {
+            background: #555;
+        }
+        .back-to-cart:hover {
+            background: #333;
+        }
+        @media (max-width: 600px) {
+            .cart-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Checkout</h2>
+        <div class="cart-grid" id="cart-items"></div>
+        <div class="total" id="total-amount">Total: $0</div>
+        <button class="button place-order" id="place-order">Place Order</button>
+        <button class="button back-to-cart" id="back-to-cart">Back to Cart</button>
+    </div>
+
+    <script>
+        function updateCartDisplay() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalAmount = 0;
+            let cartItemsDiv = document.getElementById("cart-items");
+
+            cartItemsDiv.innerHTML = ""; // Clear previous items
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = "<p style='text-align:center;'>Your cart is empty.</p>";
+            } else {
+                cart.forEach(item => {
+                    totalAmount += item.price * item.count;
+                    cartItemsDiv.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.img}" alt="${item.name}">
+                            <div class="cart-item-details">
+                                <p><strong>${item.name}</strong></p>
+                                <p>Price: $${item.price}</p>
+                                <div class="quantity-buttons">
+                                    <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                                    <p id="count-${item.id}" style="margin: 0 10px;">${item.count}</p>
+                                    <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                                </div>
+                                <p><strong>Total: $${item.price * item.count}</strong></p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            // Display total amount
+            document.getElementById("total-amount").innerText = `Total: $${totalAmount}`;
+        }
+
+        function updateQuantity(id, change) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let item = cart.find(product => product.id === id);
+
+            if (item) {
+                item.count += change;
+                if (item.count <= 0) {
+                    cart = cart.filter(product => product.id !== id); // Remove item if count is 0
+                }
+                localStorage.setItem("cart", JSON.stringify(cart)); // Update local storage
+                updateCartDisplay(); // Refresh cart display
+            }
+        }
+
+        // Place Order Button
+        document.getElementById("place-order").addEventListener("click", function () {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        // Save order details in localStorage
+        localStorage.setItem("order", JSON.stringify(cart));
+
+        // Clear cart after placing order
+        localStorage.removeItem("cart");
+
+        // Redirect to Order Confirmation Page
+        window.location.href = "order-confirmation.html";
+            alert("Order placed successfully!");
+            localStorage.removeItem("cart"); // Clear cart
+            window.location.href = "order-confirmation.html"; // Redirect to home page
+        });
+
+        // Back to Cart Button
+        document.getElementById("back-to-cart").addEventListener("click", function () {
+            window.location.href = "cart.html"; // Redirect back to the cart page
+        });
+
+        // Load cart data on page load
+        updateCartDisplay();
+    </script>
+
+    
+
+</body>
+</html>

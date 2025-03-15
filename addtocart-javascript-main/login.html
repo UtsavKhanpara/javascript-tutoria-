@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1868d5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #1456b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Enter your email">
+        <input type="password" id="password" placeholder="Enter your password">
+        <button id="loginBtn">Login</button>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+
+    <script>
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
+                alert("Login successful!");
+                
+                const params = new URLSearchParams(window.location.search);
+                const redirectPage = params.get("redirect") || "index.html"; 
+                window.location.href = redirectPage;
+            } else {
+                alert("Invalid email or password!");
+            }
+        });
+    </script>
+</body>
+</html>

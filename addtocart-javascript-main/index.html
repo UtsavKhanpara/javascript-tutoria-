@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <!-- icon -->
+     <!-- FontAwesome CDN (Latest) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="all.min.css">
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+        body{
+            background-color: #f8f8f8;
+        }
+        .container{
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        /* header start  */
+        header a{
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 0 20px;
+        }
+        /* header end  */
+        /* cart start  */
+        .product-cards{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .main{
+            width: 20%;
+            padding: 10px;
+        }
+        .card{
+            background-color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 15px 64px 0px;
+            overflow: hidden;
+        }
+        .card-img{
+            text-align: center;
+            padding: 50px 0;
+        }
+        .card-content{
+            padding: 0 30px 35px;
+            position: relative;
+        }
+        .card-content i{
+            color: orange;
+        }
+        p{
+            margin: 15px 0;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        del{
+            color: #797979;
+        }
+        span{
+            font-size: 20px;
+            font-weight: 700;
+            color: #ef262c;
+            padding-left: 5px;
+        }
+        button{
+            position: absolute;
+            left: 50%;
+            bottom: -45px;
+            padding: 15px;
+            width: 80%;
+            background-color: #1868d5;
+            transform: translateX(-50%);
+            border: none;
+            color: #fff;
+            font-size: 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .card:hover button{
+            opacity: 1;
+            visibility: visible;
+            bottom: 10px;
+        }
+        /* cart end  */
+    </style>
+
+    
+</head>
+<body>
+
+    <header style="background-color: #000000e2;padding: 10px 0;">
+        <div class="container">
+            <div class="row" style="justify-content: space-between;align-items: center;">
+                <div class="menu" style="width: 50%;">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="#">Products</a>
+                    <a href="#">Services</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div>
+                    <a href="#" id="logout-btn" onclick="logout()">Logout</a>
+
+                    <a href="login.html" id="login-btn">Login</a>
+
+                    <a href="cart.html">Cart</i></a>
+                </div>
+            </div>
+
+            
+        </div>
+    </header>
+    
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="product-cards"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var data = [
+            {
+                id:1,
+                img:'img/product-img-1.jpg',
+                name:'Xbox Gaming controller (green)',
+                delprice:27.27,
+                price:18.73,
+                count:1
+            },
+            {
+                id:2,
+                img:'img/product-img-2.jpg',
+                name:'ASUS ROG gaming headset',
+                delprice:27.27,
+                price:19.73,
+                count:1
+            },
+            {
+                id:3,
+                img:'img/product-img-3.jpg',
+                name:'PlayStation 4 Slim (White)',
+                delprice:27.27,
+                price:20.73,
+                count:1
+            },
+            {
+                id:4,
+                img:'img/product-img-4.jpg',
+                name:' Lenovo convertible laptop (Red)',
+                delprice:27.27,
+                price:21.73,
+                count:1
+            },
+            {
+                id:5,
+                img:'img/product-img-5.jpg',
+                name:'OnePlus smartphone (blue)',
+                delprice:27.27,
+                price:22.73,
+                count:1
+            },
+            {
+                id:6,
+                img:'img/product-img-6.jpg',
+                name:'Table fan (Blue and White)',
+                delprice:27.27,
+                price:18.99,
+                count:1
+            },
+            {
+                id:7,
+                img:'img/product-img-7.jpg',
+                name:'Toaster (Orange and white)',
+                delprice:27.27,
+                price:18.35,
+                count:1
+            },
+            {
+                id:8,
+                img:'img/product-img-8.jpg',
+                name:'Apple AirPods (black and white)',
+                delprice:27.27,
+                price:18.81,
+                count:1
+            },
+            {
+                id:9,
+                img:'img/product-img-9.jpg',
+                name:'Beats headphones (Blue)',
+                delprice:27.27,
+                price:17.73,
+                count:1
+            },
+            {
+                id:10,
+                img:'img/product-img-10.jpg',
+                name:'Beats headphones (Blue)',
+                delprice:27.27,
+                price:18.65,
+                count:1
+            },
+            {
+                id:11,
+                img:'img/product-img-1.jpg',
+                name:'Xbox Gaming controller (green)',
+                delprice:27.27,
+                price:18.35,
+                count:1
+            },
+            {
+                id:12,
+                img:'img/product-img-2.jpg',
+                name:'ASUS ROG gaming headset',
+                delprice:27.27,
+                price:22.73,
+                count:1
+            },
+            {
+                id:13,
+                img:'img/product-img-3.jpg',
+                name:'PlayStation 4 Slim (White)',
+                delprice:27.27,
+                price:18.80,
+                count:1
+            },
+            {
+                id:14,
+                img:'img/product-img-4.jpg',
+                name:' Lenovo convertible laptop (Red)',
+                delprice:27.27,
+                price:18.60,
+                count:1
+            },
+            {
+                id:15,
+                img:'img/product-img-5.jpg',
+                name:'OnePlus smartphone (blue)',
+                delprice:27.27,
+                price:15.73,
+                count:1
+            }
+        ]
+
+        document.querySelector('.product-cards').innerHTML = "";
+
+        data.map(p => {
+            document.querySelector('.product-cards').innerHTML += 
+            `
+            <div class="main">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="${p.img}" alt="" width="200" height="200">
+                    </div>
+                    <div class="card-content">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <p>${p.name}</p>
+                        <del>$${p.delprice}</del><span>$${p.price}</span>
+                        <button onclick="addcart(${p.id})"><i class="fa-solid fa-cart-shopping" style="color: #fff;padding-right: 5px;"></i> Add To Cart</button>
+                    </div>
+                </div>    
+            </div>
+            `
+        })
+
+        var cart =[];
+        const addcart = (id) => {
+            var c = data.find(rec => rec.id == id);
+            if(c){
+                cart.push(c);
+                localStorage.setItem('cart',JSON.stringify(cart));
+                alert('Product added to cart.');
+            }
+        }
+    </script>
+
+<script>
+    function checkLogin() {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const loginBtn = document.getElementById("login-btn");
+        const logoutBtn = document.getElementById("logout-btn");
+
+        if (user) {
+            loginBtn.style.display = "none";  // Login बटन छुपाएं
+            logoutBtn.style.display = "inline";  // Logout दिखाएं
+        } else {
+            loginBtn.style.display = "inline";  // Login दिखाएं
+            logoutBtn.style.display = "none";  // Logout छुपाएं
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem("user");
+        alert("Logged out successfully!");
+        window.location.reload();
+    }
+
+    document.addEventListener("DOMContentLoaded", checkLogin);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function addToCart(productId) {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) {
+            Swal.fire({
+                icon: "warning",
+                title: "Login Required!",
+                text: "Please login to add products to the cart.",
+                showConfirmButton: true
+            });
+            return;
+        }
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(productId);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        Swal.fire({
+            icon: "success",
+            title: "Added to Cart!",
+            text: "Product has been added successfully.",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+
+    function checkLoginForCartAccess() {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) {
+            Swal.fire({
+                icon: "error",
+                title: "Access Denied!",
+                text: "Please login to access your cart.",
+                showConfirmButton: true
+            }).then(() => {
+                window.location.href = "login.html";
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const cartLink = document.getElementById("cart-link");
+        if (cartLink) {
+            cartLink.addEventListener("click", (e) => {
+                const user = JSON.parse(localStorage.getItem("user"));
+                if (!user) {
+                    e.preventDefault();
+                    checkLoginForCartAccess();
+                }
+            });
+        }
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function addToCart(product) {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) {
+            // अगर यूजर लॉगइन नहीं है तो अलर्ट दिखाओ
+            Swal.fire({
+                icon: 'warning',
+                title: 'Login Required',
+                text: 'Please login to add items to the cart!',
+                confirmButtonText: 'OK'
+            });
+            return; // आगे का कोड रन नहीं होगा
+        }
+
+        // अगर यूजर लॉगिन है, तो प्रोडक्ट ऐड होगा
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Added to Cart',
+            text: `${product.name} has been added to your cart.`,
+            confirmButtonText: 'OK'
+        });
+    }
+
+    // अगर कोई बिना लॉगिन के cart.html खोलने की कोशिश करे, तो उसे रोक दो
+    document.addEventListener("DOMContentLoaded", function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user && window.location.pathname.includes("cart.html")) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Access Denied',
+                text: 'You need to login first!',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = "login.html"; // यूजर को लॉगिन पेज पर भेज दो
+            });
+        }
+    });
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

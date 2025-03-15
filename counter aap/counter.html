@@ -1,154 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Counter App</title>
-    <style>
-     
-        body {
-            background: linear-gradient(45deg, #f3f4f7, #b8c6db);
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-    
-        .main {
-            background-color: #ffffff;
-            width: 300px;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .main:hover {
-            transform: scale(1.05);
-        }
-
-    
-        h1 {
-            color: #333;
-            font-size: 36px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        #cnt {
-            font-size: 50px;
-            color: #333;
-            font-weight: bold;
-            margin: 10px 0;
-            transition: color 0.3s ease;
-        }
-
-    
-        .btn1,
-        .btn2 {
-            padding: 15px 30px;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            width: 80px;
-        }
-
-        .btn1:hover {
-            background-color: #45a049;
-            transform: translateY(-3px);
-        }
-
-        .btn2:hover {
-            background-color: #f44336;
-            transform: translateY(-3px);
-        }
-
-        .btn1:disabled,
-        .btn2:disabled {
-            background-color: blue;
-            cursor: not-allowed;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .main {
-                width: 90%;
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-
-            #cnt {
-                font-size: 40px;
-            }
-
-            .btn1,
-            .btn2 {
-                font-size: 18px;
-                padding: 12px 25px;
-            }
-        }
-    </style>
+    <title>Shopping Cart App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-    <div class="main">
-        <h1>Counter App</h1>
-        <h1 id="cnt">0</h1>
-        <div>
-            <button class="btn1" onclick="Increment()">+</button>
-            <button class="btn2" id="decrement" onclick="Decrement()" disabled>-</button>
+    <div class="container">
+        <h1>Shopping Cart App</h1>
+        <div class="products">
+            <div class="product" data-name="Mouse" data-price="50">
+                <img src="mouse.jpg" alt="Mouse">
+                <p>Mouse</p>
+                <p>Price: $50</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-name="Keyboard" data-price="150">
+                <img src="keyboard.jpg" alt="Keyboard">
+                <p>Keyboard</p>
+                <p>Price: $150</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product" data-name="Monitor" data-price="300">
+                <img src="monitor.jpg" alt="Monitor">
+                <p>Monitor</p>
+                <p>Price: $300</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="cart">
+            <h2>Cart</h2>
+            <ul id="cart-items"></ul>
+            <p>Subtotal: $<span id="subtotal">0</span></p>
+            <p>Tax (12%): $<span id="tax">0</span></p>
+            <p>Total: $<span id="total">0</span></p>
+            <button id="clear-cart">Clear Cart</button>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cart = [];
+            const cartItems = document.getElementById("cart-items");
+            const subtotalEl = document.getElementById("subtotal");
+            const taxEl = document.getElementById("tax");
+            const totalEl = document.getElementById("total");
+            const clearCartBtn = document.getElementById("clear-cart");
 
-    <script type="text/javascript">
-        let cnt = 0;
+            document.querySelectorAll(".add-to-cart").forEach(button => {
+                button.addEventListener("click", () => {
+                    const product = button.parentElement;
+                    const name = product.getAttribute("data-name");
+                    const price = parseFloat(product.getAttribute("data-price"));
+                    
+                    const existingItem = cart.find(item => item.name === name);
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cart.push({ name, price, quantity: 1 });
+                    }
+                    updateCart();
+                });
+            });
 
-        let btn = document.getElementById('decrement');
-        btn.disabled = true;
-
-        document.getElementById('cnt').innerHTML = cnt;
-
-        const Increment = () => {
-            cnt++;
-            document.getElementById('cnt').innerHTML = cnt;
-
-            // Enable the decrement button when counter is positive
-            if (cnt > 0) {
-                btn.disabled = false;
+            function updateCart() {
+                cartItems.innerHTML = "";
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    const li = document.createElement("li");
+                    li.textContent = `${item.name} x${item.quantity} - $${item.price * item.quantity}`;
+                    cartItems.appendChild(li);
+                });
+                const tax = subtotal * 0.12;
+                const total = subtotal + tax;
+                
+                subtotalEl.textContent = subtotal.toFixed(2);
+                taxEl.textContent = tax.toFixed(2);
+                totalEl.textContent = total.toFixed(2);
             }
 
-            // Change counter color when it's positive
-            document.getElementById('cnt').style.color = '#4CAF50';
-        }
-
-        const Decrement = () => {
-            cnt--;
-            document.getElementById('cnt').innerHTML = cnt;
-
-            // Disable the decrement button when counter is zero
-            if (cnt === 0) {
-                btn.disabled = true;
-                document.getElementById('cnt').style.color = '#333';  // Reset color to default when it's zero
-            }
-        }
+            clearCartBtn.addEventListener("click", () => {
+                cart.length = 0;
+                updateCart();
+            });
+        });
     </script>
-
 </body>
-
 </html>

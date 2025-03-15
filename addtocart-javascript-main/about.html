@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-card {
+            width: 30%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .product-card h3 {
+            margin: 15px 0;
+        }
+        .product-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        /* Header Styling */
+        header {
+            background-color: #000000e2;
+            padding: 10px 0;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ Header Manually Added -->
+    <header>
+        <div class="container">
+            <div class="row" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="menu" style="width: 50%;">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="products.html">Products</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div>
+                    <a href="#" id="logout-btn" onclick="logout()">Logout</a>
+                    <a href="login.html" id="login-btn">Login</a>
+                    <a href="cart.html">Cart</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>About Our Products</h1>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            We offer high-quality electronic gadgets and gaming accessories. Explore our collection of premium 
+            products designed for gamers, tech enthusiasts, and professionals.
+        </p>
+
+        <div class="product-info">
+            <div class="product-card">
+                <img src="img/product-img-1.jpg" alt="Xbox Controller">
+                <h3>Xbox Gaming Controller</h3>
+                <p>Experience seamless gaming with our ergonomic Xbox controller featuring advanced grip and precision.</p>
+            </div>
+            
+            <div class="product-card">
+                <img src="img/product-img-2.jpg" alt="ASUS ROG Headset">
+                <h3>ASUS ROG Gaming Headset</h3>
+                <p>Enjoy immersive audio with our ASUS ROG gaming headset, built for professional gamers.</p>
+            </div>
+            
+            <div class="product-card">
+                <img src="img/product-img-3.jpg" alt="PlayStation 4">
+                <h3>PlayStation 4 Slim</h3>
+                <p>Play the latest games with smooth performance on our sleek and powerful PlayStation 4 Slim.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const user = JSON.parse(localStorage.getItem("user"));
+            const loginBtn = document.getElementById("login-btn");
+            const logoutBtn = document.getElementById("logout-btn");
+
+            if (user) {
+                loginBtn.style.display = "none";
+                logoutBtn.style.display = "inline";
+            } else {
+                loginBtn.style.display = "inline";
+                logoutBtn.style.display = "none";
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("user");
+            alert("Logged out successfully!");
+            window.location.reload();
+        }
+
+        document.addEventListener("DOMContentLoaded", checkLogin);
+    </script>
+
+</body>
+</html>
