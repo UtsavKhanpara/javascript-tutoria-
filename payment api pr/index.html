@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter 💱</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4 animated fadeIn">
+            <h2 class="text-center text-primary">🌍 Currency Converter 💱</h2>
+
+            <div class="mb-3">
+                <label for="amount" class="form-label" style="color: wheat;">Enter Amount:</label>
+                <input type="number" id="amount" class="form-control hover-effect" placeholder="Enter amount" value="1">
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="fromCurrency" class="form-label" style="color:wheat;">From</label>
+                    <select id="fromCurrency" class="form-select hover-effect"></select>
+                </div>
+                <div class="col-md-2 text-center align-self-center">
+                    <span class="exchange-icon"><i class="fas fa-exchange-alt"></i></span>
+                </div>
+                <div class="col-md-5">
+                    <label for="toCurrency" class="form-label" style="color: wheat;">To</label>
+                    <select id="toCurrency" class="form-select hover-effect"></select>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button id="convert" class="btn btn-primary btn-lg hover-effect">Convert</button>
+            </div>
+
+            <h3 class="text-center mt-4 text-success result animated fadeIn">Converted Amount: <span id="convertedAmount"></span></h3>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
