@@ -110,6 +110,18 @@
     </div>
 
     <script>
+        // Check if user is logged in or not
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = JSON.parse(localStorage.getItem("user"));
+
+            // अगर यूज़र लॉगिन है तो index.html पर रीडायरेक्ट करें
+            if (user) {
+                window.location.href = "index.html";
+            }
+
+            updateUI();
+        });
+
         function getUsers() {
             return JSON.parse(localStorage.getItem("users")) || [];
         }
@@ -156,7 +168,7 @@
             const newUser = { name, email, password };
             saveUser(newUser);
             alert("Registration successful! Please log in.");
-            toggleAuth(); // Switch to login form
+            toggleAuth();
         }
 
         function logout() {
@@ -172,13 +184,13 @@
             const cartLink = document.getElementById("cart-link");
 
             if (user) {
-                loginBtn.style.display = "none"; // Hide login
-                logoutBtn.style.display = "inline-block"; // Show logout
-                cartLink.style.display = "inline-block"; // Show cart
+                loginBtn.style.display = "none";
+                logoutBtn.style.display = "inline-block";
+                cartLink.style.display = "inline-block";
             } else {
-                loginBtn.style.display = "inline-block"; // Show login
-                logoutBtn.style.display = "none"; // Hide logout
-                cartLink.style.display = "none"; // Hide cart
+                loginBtn.style.display = "inline-block";
+                logoutBtn.style.display = "none";
+                cartLink.style.display = "none";
             }
         }
 
@@ -190,12 +202,10 @@
             document.getElementById("auth-btn").setAttribute("onclick", isLogin ? "register()" : "login()");
             document.querySelector(".toggle-btn").innerText = isLogin ? "Already have an account? Login" : "Don't have an account? Register";
         }
- 
+
         function showLogin() {
             document.getElementById("login-container").style.display = "block";
         }
-
-        document.addEventListener("DOMContentLoaded", updateUI);
     </script>
 
 </body>

@@ -1,0 +1,30 @@
+<script type="text/javascript">
+
+    // const demo = async () => {
+    //     let name = await "utsav king of khanpara"
+    //     console.log(name)
+    // }
+
+    // console.log("pizzza of the day of light of the sky night ");
+    // console.log("pasta");
+    // demo();
+
+    const record = async () => {
+        let data = await [{ id: 1, name: "utsav", phone: 123 }
+            , { id: 2, name: "khanpara", phone: 134 }
+            , { id: 3, name: "tamne", phone: 456 }
+        ]
+        return data;
+    }
+    console.log("ice cream");
+    record();
+    record().then((data) => {
+        console.log(data);
+    }).catch((e) => {
+        console.log(e);
+    })
+    console.log("nahi male");
+
+
+
+</script>

@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function logout(event) {
-        event.preventDefault();  // 🔥 FIXED: अब पेज रीलोड नहीं होगा
-        console.log("Logout Clicked!");  // ✅ Debugging के लिए Console में लॉग करें
+    function logout(event){
+        event.preventDefault();// 🔥 FIXED: अब पेज रीलोड नहीं होगा
+        console.log("Logout Clicked!");//✅ Debugging के लिए Console में लॉग करें
 
         localStorage.removeItem("user");  // 🔥 FIXED: अब सही से डेटा हटेगा
         alert("Logged out successfully!");
@@ -33,6 +33,5 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "index.html";
         }
     }
-
     updateAuthButtons();
 });
