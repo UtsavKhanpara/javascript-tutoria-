@@ -1,0 +1,43 @@
+/* Black Gradient Background */
+body {
+    background: linear-gradient(to right, #000000, #434343);
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+/* Card Styling */
+.card {
+    max-width: 500px;
+    margin: auto;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.hover-effect {
+    transition: all 0.3s ease-in-out;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+}
+.hover-effect:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Animations */
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+.fadeIn {
+    animation-name: fadeIn;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

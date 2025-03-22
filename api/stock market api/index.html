@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Tracker 📈</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4 animated fadeIn">
+            <h2 class="text-center text-success">📊 Stock Market Tracker</h2>
+
+            <div class="mb-3">
+                <label for="stockSymbol" class="form-label">Enter Stock Symbol:</label>
+                <input type="text" id="stockSymbol" class="form-control hover-effect" placeholder="e.g., AAPL, TSLA, MSFT">
+            </div>
+
+            <div class="text-center mt-3">
+                <button id="getStock" class="btn btn-success btn-lg hover-effect">Get Stock Data</button>
+            </div>
+
+            <div class="mt-4" id="stockInfo" style="display: none;">
+                <h4 class="text-center text-warning">Stock Info 📉</h4>
+                <p><strong>Company:</strong> <span id="companyName"></span></p>
+                <p><strong>Current Price:</strong> $<span id="currentPrice"></span></p>
+                <p><strong>High:</strong> $<span id="highPrice"></span></p>
+                <p><strong>Low:</strong> $<span id="lowPrice"></span></p>
+            </div>
+
+            <canvas id="stockChart" class="mt-4"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
